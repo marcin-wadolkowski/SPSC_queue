@@ -1,6 +1,12 @@
 #include "spsc_queue.hpp"
 
 template <typename T> spsc_queue<T>::spsc_queue(size_t capacity) {
+  auto max_capacity = std::CONTAINER<T>{}.max_size();
+  if (capacity > max_capacity) {
+    std::string msg = "The maximum capacity must be less than or equal: " +
+                      std::to_string(max_capacity);
+    throw std::out_of_range(msg);
+  }
   queue = std::make_unique<std::queue<T, std::CONTAINER<T>>>();
   this->capacity = capacity;
 }

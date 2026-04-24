@@ -30,6 +30,12 @@ TEST(spsc_queue, empty) {
   EXPECT_EQ(spsc_q1.empty(), false);
 }
 
+TEST(spsc_queue, out_of_range) {
+  EXPECT_THROW(
+      { spsc_queue<int> spsc_q1(std::numeric_limits<size_t>::max()); },
+      std::out_of_range);
+}
+
 TEST(spsc_queue, pop_on_empty_queue_exact_message) {
   spsc_queue<int> spsc_q1(10);
   EXPECT_EQ(0, spsc_q1.size());
