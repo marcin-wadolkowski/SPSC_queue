@@ -74,3 +74,29 @@ TEST(spsc_queue, parallel_test) {
   // be 1000 elements in queue
   EXPECT_EQ(1000, spsc_q1.size());
 }
+
+TEST(spsc_queue, parallel_test_2) {
+  // set capacity to 2000 elements
+  spsc_queue<int> spsc_q1(20000);
+  // fill queue with 1000 elements
+  for (unsigned i = 0; i < 10000; ++i)
+    spsc_q1.push(0);
+
+  EXPECT_EQ(10000, spsc_q1.size());
+
+  std::thread producers[10000];
+  std::thread consumers[10000];
+  // create 1000 producers and 1000 consumers
+  for (int i = 0; i < 10000; i++) {
+    producers[i] = std::thread(producer, std::ref(spsc_q1));
+    consumers[i] = std::thread(consumer, std::ref(spsc_q1));
+  }
+  for (int i = 0; i < 10000; i++) {
+    producers[i].join();
+    consumers[i].join();
+  }
+
+  // after 1000 pushes and 1000 pops in random order there should
+  // be 1000 elements in queue
+  EXPECT_EQ(10000, spsc_q1.size());
+}

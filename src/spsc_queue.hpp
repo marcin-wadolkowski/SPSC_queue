@@ -1,13 +1,18 @@
 #include <deque>
 #include <iostream>
+#include <list>
 #include <memory>
 #include <mutex>
 #include <queue>
 
+#ifndef CONTAINER
+#define CONTAINER deque
+#endif
+
 template <typename T> class spsc_queue final {
 private:
   size_t capacity;
-  std::unique_ptr<std::queue<T, std::deque<T>>> queue;
+  std::unique_ptr<std::queue<T, std::CONTAINER<T>>> queue;
   mutable std::mutex
       producer_mutex; // mutable because of presence in const methods
   mutable std::mutex consumer_mutex;

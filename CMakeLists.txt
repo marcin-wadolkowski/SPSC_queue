@@ -21,8 +21,14 @@ add_executable(spsc_queue ${SOURCES})
 set (CMAKE_CXX_FLAGS "-std=c++23 ${CMAKE_CXX_FLAGS}")
 
 set_target_properties(spsc_queue PROPERTIES 
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+if(CONTAINER)
+  target_compile_definitions(spsc_queue PRIVATE CONTAINER=${CONTAINER})
+else()
+  target_compile_definitions(spsc_queue PRIVATE CONTAINER=deque)
+endif()
 
 enable_testing()
 

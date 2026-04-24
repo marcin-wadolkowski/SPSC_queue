@@ -1,7 +1,7 @@
 #include "spsc_queue.hpp"
 
 template <typename T> spsc_queue<T>::spsc_queue(size_t capacity) {
-  queue = std::make_unique<std::queue<T, std::deque<T>>>();
+  queue = std::make_unique<std::queue<T, std::CONTAINER<T>>>();
   this->capacity = capacity;
 }
 
