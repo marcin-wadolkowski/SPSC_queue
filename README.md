@@ -51,3 +51,18 @@ ctest -V
 
 To generate a code coverage report, you need to install lcov. Then run the generate_report.sh script. It assumes you’re in the project’s root directory, that a build subdirectory already exists, and it will place the results in a report subdirectory. Additionally, the files coverage.info and coverage_filtered.info will be generated.
 
+## How to check for memory leaks
+
+Install valgrind and run:
+
+```bash
+valgrind --leak-check=full --show-leak-kinds=all -s ./spsc_tests --gtest_filter=*parallel_test
+```
+and/or
+```bash
+valgrind --leak-check=full --show-leak-kinds=all -s ctest -V
+```
+and/or
+```bash
+valgrind --leak-check=full --show-leak-kinds=all -s ./bin/spsc_queue
+```
