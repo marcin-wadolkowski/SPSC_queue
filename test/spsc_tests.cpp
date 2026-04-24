@@ -66,7 +66,7 @@ void producer(spsc_queue<int> &queue, bool print_size, bool random_delay) {
     std::cout << "[          ] Queue size: " << queue.size() << std::endl;
 }
 
-// function for consumer threads, used in the parallel_test
+// function for consumer threads, used in the parallel tests
 void consumer(spsc_queue<int> &queue, bool random_delay) {
   if (random_delay) {
     std::this_thread::sleep_for(std::chrono::milliseconds(rand() % 3000));
