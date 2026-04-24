@@ -26,6 +26,5 @@ public:
   T pop(); // The pop method returns first element and then does pop
   bool empty() const;
   size_t size() const;
-  bool can_push() const; // Returns true if new element can be pushed and
-                         // there will be no out of range
+  bool can_push() const; // Returns true if new element can be pushed
 };
