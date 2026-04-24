@@ -23,6 +23,13 @@ TEST(spsc_queue, ten_elements_plus_one) {
   EXPECT_EQ(0, spsc_q1.pop());
 }
 
+TEST(spsc_queue, empty) {
+  spsc_queue<int> spsc_q1(1);
+  EXPECT_EQ(spsc_q1.empty(), true);
+  spsc_q1.push(123);
+  EXPECT_EQ(spsc_q1.empty(), false);
+}
+
 TEST(spsc_queue, pop_on_empty_queue_exact_message) {
   spsc_queue<int> spsc_q1(10);
   EXPECT_EQ(0, spsc_q1.size());

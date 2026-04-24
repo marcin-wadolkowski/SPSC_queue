@@ -40,6 +40,9 @@ add_executable(
 
 target_include_directories(spsc_tests PRIVATE src)
 
+target_compile_options(spsc_tests PRIVATE --coverage)
+target_link_options(spsc_tests PRIVATE --coverage)
+
 target_link_libraries(
   spsc_tests
   GTest::gtest_main
