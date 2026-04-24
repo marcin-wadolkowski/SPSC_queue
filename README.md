@@ -36,7 +36,15 @@ The output should be:
 ## How to run the tests
 
 ```bash
+./spsc_tests
+```
+or
+```bash
 ctest
+```
+or
+```bash
+ctest -V
 ```
 
 ## How to generate a code coverage report

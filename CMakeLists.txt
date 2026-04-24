@@ -49,4 +49,7 @@ target_link_libraries(
 )
 
 include(GoogleTest)
-gtest_discover_tests(spsc_tests)
+gtest_discover_tests(spsc_tests
+  PROPERTIES USES_TERMINAL TRUE
+)
+
